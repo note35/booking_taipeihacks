@@ -12,18 +12,14 @@
     
 # How to define a new color information?
 
-1. Main Color: #color
+1. Main Color: #maincolorname
 
     (eg. #Whites/Pastels)
     You must use # at the beginning of the line 
 
-2. Sub Color: <color> <rgb> <hex> 
+2. Sub Color: subcolorname r-g-b hex 
 
     (eg. Snow 255-250-250 fffafa)
-    <color> may not contains any space
-    <rgb> should be r-g-b
-    <hex> should be 6 digits (0-9 or a-f)
-
     Please check that there is no space after <hex>
     
 3. Each Main Color must have at least one Sub Color
