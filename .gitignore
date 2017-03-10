@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Vim
+*.swp
+
+# MacOS
+*.DS_Store
+
 # C extensions
 *.so
 
