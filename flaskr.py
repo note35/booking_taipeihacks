@@ -14,39 +14,39 @@ def close_connection(exception):
     hotel_model.close_connection(exception)
 
 class EvaluationStatistics(Resource):
-    def get(self, region_id):
-        ret = hotel_model.get_evaluation_statistics(region_id)
+    def get(self, city):
+        ret = hotel_model.get_evaluation_statistics(city)
         if not ret:
-            abort(404, message="Region {} does not exist".format(region_id))
+            abort(404, message="Region {} does not exist".format(city))
         return jsonify({})
 
 class ViewsStatistics(Resource):
-    def get(self, region_id):
-        ret = hotel_model.get_views_statistics(region_id)
+    def get(self, city):
+        ret = hotel_model.get_views_statistics(city)
         if not ret:
-            abort(404, message="Region {} does not exist".format(region_id))
+            abort(404, message="Region {} does not exist".format(city))
         return jsonify({})
 
 class ReviewsStatistics(Resource):
-    def get(self, region_id):
-        ret = hotel_model.get_reviews_statistics(region_id)
+    def get(self, city):
+        ret = hotel_model.get_reviews_statistics(city)
         if not ret:
-            abort(404, message="Region {} does not exist".format(region_id))
+            abort(404, message="Region {} does not exist".format(city))
         return jsonify({})
 
 class HotelList(Resource):
-    def get(self):
-        ret = hotel_model.get_hotel_list(region_id)
+    def get(self, city):
+        ret = hotel_model.get_hotel_list(city)
         if not ret:
-            abort(404, message="Region {} does not exist".format(region_id))
+            abort(404, message="Region {} does not exist".format(city))
         return jsonify({})
 
 
 ## routing
-api.add_resource(EvaluationStatistics, "/evaluation_statistics/<region_id>")
-api.add_resource(ViewsStatistics, "/views_staticstics/<region_id>")
-api.add_resource(ReviewsStatistics, "/reviews_staticstics/<region_id>")
-api.add_resource(HotelList, "/hotel_list/<region_id>")
+api.add_resource(EvaluationStatistics, "/evaluation_statistics/<city>")
+api.add_resource(ViewsStatistics, "/views_staticstics/<city>")
+api.add_resource(ReviewsStatistics, "/reviews_staticstics/<city>")
+api.add_resource(HotelList, "/hotel_list/<city>")
 
 
 if __name__ == "__main__":

@@ -21,8 +21,7 @@ class HotelModel(object):
         self.db.cursor().execute(
             "CREATE TABLE IF NOT EXISTS main.Hotels(" +
             "ID integer PRIMARY KEY AUTOINCREMENT, " +
-            "hotel_id string" +
-            "region_id varchar(255), " +
+            "hotel_id string, " +
             "main_color string, " +
             "sub_color string, " +
             "hex string, " +
@@ -40,30 +39,30 @@ class HotelModel(object):
         )
         self.db.commit()
 
-    def get_hotel_list(self, region_id):
+    def get_hotel_list(self, city):
         self.open_connection()
-        region_id_str = str(region_id)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE region_id=?;", (region_id_str))
+        city_str = str(city)
+        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", (city_str))
         self.db.commit()
         return r.fetchone()
 
-    def get_evaluation_statistics(self, region_id):
+    def get_evaluation_statistics(self, city):
         self.open_connection()
-        region_id_str = str(region_id)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE region_id=?;", (region_id_str))
+        city_str = str(city)
+        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", (city_str))
         self.db.commit()
         return r.fetchone()
 
-    def get_views_statistics(self, region_id):
+    def get_views_statistics(self, city):
         self.open_connection()
-        region_id_str = str(region_id)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE region_id=?;", (region_id_str))
+        city_str = str(city)
+        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", (city_str))
         self.db.commit()
         return r.fetchone()
 
-    def get_reviews_statistics(self, region_id):
+    def get_reviews_statistics(self, city):
         self.open_connection()
-        region_id_str = str(region_id)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE region_id=?;", (region_id_str))
+        city_str = str(city)
+        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", (city_str))
         self.db.commit()
         return r.fetchone()
