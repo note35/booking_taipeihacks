@@ -17,28 +17,28 @@ class EvaluationStatistics(Resource):
     def get(self, city):
         ret = hotel_model.get_evaluation_statistics(city)
         if not ret:
-            abort(404, message="Region {} does not exist".format(city))
+            abort(404, message="City {} does not exist".format(city))
         return jsonify({})
 
 class ViewsStatistics(Resource):
     def get(self, city):
         ret = hotel_model.get_views_statistics(city)
         if not ret:
-            abort(404, message="Region {} does not exist".format(city))
+            abort(404, message="City {} does not exist".format(city))
         return jsonify({})
 
 class ReviewsStatistics(Resource):
     def get(self, city):
         ret = hotel_model.get_reviews_statistics(city)
         if not ret:
-            abort(404, message="Region {} does not exist".format(city))
+            abort(404, message="City {} does not exist".format(city))
         return jsonify({})
 
 class HotelList(Resource):
     def get(self, city):
         ret = hotel_model.get_hotel_list(city)
         if not ret:
-            abort(404, message="Region {} does not exist".format(city))
+            abort(404, message="City {} does not exist".format(city))
         return jsonify({})
 
 
@@ -51,5 +51,5 @@ api.add_resource(HotelList, "/hotel_list/<string:city>")
 
 if __name__ == "__main__":
     with app.app_context():
-        hotel_model.setup_init_data()
+        #hotel_model.setup_init_data()
         app.run(debug=True)

@@ -41,10 +41,11 @@ class HotelModel(object):
 
     def get_hotel_list(self, city):
         self.open_connection()
+        self.db.row_factory = sqlite3.Row
         city_str = str(city)
         r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", [city_str])
         self.db.commit()
-        return r.fetchone()
+        return r.fetchall()
 
     def get_evaluation_statistics(self, city):
         self.open_connection()
