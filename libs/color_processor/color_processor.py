@@ -80,13 +80,18 @@ def calc_color_to_dict(folder):
             color_names = [rgb2color(color) for color in colors]
             hex_colors = [rgb2hex(color) for color in colors]
             dic[filename_noext] = {
-                "main_color": ''.join([color_name[0]+',' for color_name in color_names])[:-2],
-                "sub_color": ''.join([color_name[1]+',' for color_name in color_names])[:-2],
+                "main_color": ''.join([color_name[0]+',' for color_name in color_names])[:-1],
+                "sub_color": ''.join([color_name[1]+',' for color_name in color_names])[:-1],
                 "hex": ''.join(hex_color+',' for hex_color in hex_colors)
             }
+            print(dic)
+            import sys
+            sys.exit(0)
         except:
             print("skipping: {}".format(filename))
     return dic
+
+calc_color_to_dict("Taipei")
 
 #major_colors = get_major_colors("../../examples/input.jpg")
 #print([rgb2color(color_pair) for color_pair in major_colors])
