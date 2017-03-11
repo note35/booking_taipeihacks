@@ -6,6 +6,7 @@ import os
 import sys
 import random
 from tqdm import tqdm
+import configparser
 
 sys.path.insert(0, '../libs/color_processor/')
 from color_processor import calc_color_to_dict, write2file
@@ -37,7 +38,8 @@ def get_view_word(score):
     else:
         return 'unknown'
 
-
+config = configparser.ConfigParser()
+config.read('../secret.ini')
 image_path = "hotel_images/taipei/"
 hotel_colors_file = "hotel_images/taipei/all.json"
 db_path = "../hotel.db"
@@ -65,7 +67,8 @@ print(len(hotel_ids))
 c = HTTPSConnection("distribution-xml.booking.com")
 #we need to base 64 encode it
 #and then decode it to acsii as python 3 stores it as a byte string
-userAndPass = b64encode(b"hacker234:8hqNW6HtfU").decode("ascii")
+userAndPassString = config['default']['user'] + ":" + config['default']['password']
+userAndPass = b64encode(str.encode(userAndPassString)).decode("ascii")
 headers = { 'Authorization' : 'Basic %s' %  userAndPass }
 #then connect
 c.request('GET', '/json/bookings.getHotels?hotel_ids={},&languagecode=en'.format(", ".join(hotel_ids)), headers=headers)
@@ -81,7 +84,7 @@ print(len(hotels))
 db = sqlite3.connect(db_path)
 for idx, hotel in tqdm(enumerate(hotels)):
     view_r = random.normalvariate(0, 2)
-    print(hotel)
+    #print(hotel)
     hotel_id = hotel['hotel_id']
     try:
         hotel_color = hotel_colors[hotel_id]
