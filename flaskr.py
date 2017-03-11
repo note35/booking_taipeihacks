@@ -43,10 +43,10 @@ class HotelList(Resource):
 
 
 ## routing
-api.add_resource(EvaluationStatistics, "/evaluation_statistics/<city>")
-api.add_resource(ViewsStatistics, "/views_staticstics/<city>")
-api.add_resource(ReviewsStatistics, "/reviews_staticstics/<city>")
-api.add_resource(HotelList, "/hotel_list/<city>")
+api.add_resource(EvaluationStatistics, "/evaluation_statistics/<string:city>")
+api.add_resource(ViewsStatistics, "/views_staticstics/<string:city>")
+api.add_resource(ReviewsStatistics, "/reviews_staticstics/<string:city>")
+api.add_resource(HotelList, "/hotel_list/<string:city>")
 
 
 if __name__ == "__main__":
