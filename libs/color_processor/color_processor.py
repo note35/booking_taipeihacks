@@ -60,19 +60,18 @@ def calc_color_to_dict(folder):
     Args:
         string, folder name (which contains all photos of one region)
     Return:
-        list of dict
-            [
+        dict of dict
+            {
                 dict["hotel_id"]{
                     "main_color": "some_color,some_color",
-                    "sub_color": "some_color,some_color", 
+                    "sub_color": "some_color,some_color",
                     "hex": "some_color,some_color"
                 }, ...
-            ]
+            }
     """
     filename_list = load_file_name_list(folder)
-    ret = []
+    dic = {}
     for filename in tqdm(filename_list):
-        dic = {}
         filename_noext = filename.split(".")[0]
 
         print('processing: {}'.format(filename))
@@ -85,10 +84,9 @@ def calc_color_to_dict(folder):
                 "sub_color": ''.join([color_name[1]+',' for color_name in color_names])[:-2],
                 "hex": ''.join(hex_color+',' for hex_color in hex_colors)
             }
-            ret.append(dic)
         except:
             print("skipping: {}".format(filename))
-    return ret
+    return dic
 
 #major_colors = get_major_colors("../../examples/input.jpg")
 #print([rgb2color(color_pair) for color_pair in major_colors])
