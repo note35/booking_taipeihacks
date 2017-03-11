@@ -1,0 +1,45 @@
+@import "./color";
+
+$primary-color: #00307A;
+$second-color: #2196F3;
+
+$color-text-primary: $brown-600;
+$hyperlink-text-primary: $light-green-700;
+// $color-text-secondary: $palette-deep-orange-400;
+
+$body-color: white;
+
+// table
+$color-table-item-bottom: $teal-50;
+$color-table-head: $orange-500;
+$color-table-hover: $orange-50;
+$color-table-detail-key: $light-blue-500;
+$color-table-detail-value: $brown-400;
+
+// Header
+$header-height: 45px;
+
+body {
+  background-color: $body-color; 
+}
+
+::-webkit-scrollbar {
+    width: 0.5em;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #2196F3;
+  outline: 1px solid red;
+}
+
+// ::-webkit-scrollbar              { /* 1 */ }
+// ::-webkit-scrollbar-button       { /* 2 */ }
+// ::-webkit-scrollbar-track        { /* 3 */ }
+// ::-webkit-scrollbar-track-piece  { /* 4 */ }
+// ::-webkit-scrollbar-thumb        { /* 5 */ }
+// ::-webkit-scrollbar-corner       { /* 6 */ }
+// ::-webkit-resizer                { /* 7 */ }

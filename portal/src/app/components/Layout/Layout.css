@@ -1,0 +1,31 @@
+@import "theme/default";
+
+body {
+  margin: 0px;
+}
+
+.Layout {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    overflow: auto;
+}
+
+.Header {
+  padding: 0 50px;
+  background: $primary-color;
+  color: white;
+  height: $header-height;
+  line-height: $header-height;
+  flex: 0 0 auto;
+}
+
+.Content {
+  margin: 5px;
+  flex: 1 100%;
+}
+
+.Row {
+  display: flex;
+  flex-direction: row;
+}

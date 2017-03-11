@@ -1,0 +1,10 @@
+.AppBar {
+  height: 3.4rem;
+}
+
+.logo {
+  top: 12px;
+  width: 150px;
+  position: absolute;
+  left: 75px;
+}
