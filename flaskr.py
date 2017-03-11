@@ -39,7 +39,17 @@ class HotelList(Resource):
         ret = hotel_model.get_hotel_list(city)
         if not ret:
             abort(404, message="City {} does not exist".format(city))
-        return jsonify({})
+        array_of_dict = []
+        for hotel in ret:
+            hotel_dict = dict(hotel)
+            hotel_dict['location'] = {
+                'latitude': hotel['latitude'],
+                'longitude': hotel['longitude']
+            }
+            del hotel_dict['latitude']
+            del hotel_dict['longitude']
+            array_of_dict.append(hotel_dict)
+        return jsonify(array_of_dict)
 
 
 ## routing
