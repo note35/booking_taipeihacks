@@ -1,0 +1,55 @@
+@import "theme/default";
+
+.TableItem {
+  border-bottom: 1px solid $color-table-item-bottom;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-table-hover;
+  }
+}
+
+.Line {
+  display: flex;
+
+  > span {
+    padding: 8px 16px;
+    line-height: 48px;
+    &:nth-child(1) {
+      flex: 2;
+    }
+    &:nth-child(2) {
+      flex: 1;
+    }
+  }
+  font-size: 16px;
+}
+
+.Detail {
+  > div { 
+    display: flex;
+    > span {
+      padding: 8px 16px;
+
+      &:nth-child(1) {
+        flex: initial;
+        min-width: 70px;
+        display: flex;
+        color: $color-table-detail-key;
+      }
+      &:nth-child(2) {
+        flex: 2;
+        color: $color-table-detail-value;
+      }
+    }
+
+    a{
+      color: $hyperlink-text-primary;
+      text-decoration: none;
+    }
+  }
+}
+
+.marker {
+  position: absolute;
+}
