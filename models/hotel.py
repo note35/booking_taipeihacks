@@ -35,8 +35,7 @@ class HotelModel(object):
             "review_score_word string, " +
             "review_score float, " +
             "review_nr integer, " +
-            "view_score_word string, " +
-            "view_score float, " +
+            "view_word string, " +
             "view_nr integer)"
         )
         self.db.commit()
