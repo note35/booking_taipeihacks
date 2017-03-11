@@ -21,11 +21,12 @@ class HotelModel(object):
         self.db.cursor().execute(
             "CREATE TABLE IF NOT EXISTS main.Hotels(" +
             "ID integer PRIMARY KEY AUTOINCREMENT, " +
+            "hotel_id string" +
             "region_id varchar(255), " +
             "main_color string, " +
             "sub_color string, " +
             "hex string, " +
-            "countrycodes string, " +
+            "countrycode string, " +
             "city string, " +
             "district string, " +
             "latitude string, " +
@@ -34,6 +35,8 @@ class HotelModel(object):
             "review_score_word string, " +
             "review_score float, " +
             "review_nr integer, " +
+            "view_score_word string, " +
+            "view_score float, " +
             "view_nr integer)"
         )
         self.db.commit()
