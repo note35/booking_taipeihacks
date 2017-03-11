@@ -15,12 +15,91 @@ import {
 
 const chartData = {
   wonderful: {
-    'main_color': [ 'black', 'red', 'blue' ]
+    'main_color': [ 
+      { 
+        name: 'Oranges',
+        main_color_scale: 50,
+        main_color_orig: 50, 
+        sub_color:[
+          {
+            name: 'OrangeRed',
+            main_color_scale: 0,
+            main_color_orig: 0,
+            hex: '#ffff00',
+          },
+        ]
+      },
+      { 
+        name: 'Blue',
+        main_color_scale: 30,
+        main_color_orig: 30, 
+        sub_color:[
+          {
+            name: 'OrangeRed',
+            main_color_scale: 0,
+            main_color_orig: 0,
+            hex: '#ffff00',
+          },
+        ]
+      },
+      { 
+        name: 'Yellow',
+        main_color_scale: 20,
+        main_color_orig: 20, 
+        sub_color:[
+          {
+            name: 'OrangeRed',
+            main_color_scale: 0,
+            main_color_orig: 0,
+            hex: '#ffff00',
+          },
+        ]
+      }
+    ]
   },
-
   very_good: {
-    'main_color': [ 'green', 'yellow', 'blue' ]
-  },
+    'main_color': [ 
+      { 
+        name: 'Red',
+        main_color_scale: 50,
+        main_color_orig: 50, 
+        sub_color:[
+          {
+            name: 'OrangeRed',
+            main_color_scale: 0,
+            main_color_orig: 0,
+            hex: '#ffff00',
+          },
+        ]
+      },
+      { 
+        name: 'Green',
+        main_color_scale: 30,
+        main_color_orig: 30, 
+        sub_color:[
+          {
+            name: 'OrangeRed',
+            main_color_scale: 0,
+            main_color_orig: 0,
+            hex: '#ffff00',
+          },
+        ]
+      },
+      { 
+        name: 'Black',
+        main_color_scale: 20,
+        main_color_orig: 20, 
+        sub_color:[
+          {
+            name: 'OrangeRed',
+            main_color_scale: 0,
+            main_color_orig: 0,
+            hex: '#ffff00',
+          },
+        ]
+      }
+    ]
+  }
 }
 
 export function* fetchChartDataTask() {

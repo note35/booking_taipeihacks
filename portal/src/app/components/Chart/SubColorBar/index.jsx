@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-const ReactHighcharts = require('react-highcharts'); 
+// const ReactHighcharts = require('react-highcharts'); 
 
 // import css from './AppBar.css'
 
@@ -58,10 +58,33 @@ let config = {
     }]
 }
 
+let myChart;
+
 export default class SubColorBar extends Component {
+   componentWillReceiveProps( nextProps ) {
+    console.log('receive', nextProps.source)
+    // let chart = this.refs.chart.getChart();
+    // chart.series[0].addPoint({x: 10, y: 12});
+    // myChart.update({ colors: [
+    //         nextProps.source['main_color'][0], 
+    //         nextProps.source['main_color'][1], 
+    //         nextProps.source['main_color'][2], 
+    //         '#999999', '#808080', '#666666'
+    // ]}, true)
+    // config.colors[0] = nextProps.source['main_color'][0];
+    // config.colors[1] = nextProps.source['main_color'][1];
+    // config.colors[2] = nextProps.source['main_color'][2];
+
+    // myChart = Highcharts.chart('subcolorbar', config)
+  }
+
+  componentDidMount() {
+    myChart = Highcharts.chart('subcolorbar', config)
+  }
+
   render() {
     return (
-      <ReactHighcharts config = {config}></ReactHighcharts>
+      <div id="subcolorbar"></div>
     );
   }
 }
