@@ -21,8 +21,10 @@ class ChartFilter extends Component {
 
     return (
       <div className={css.container}>
-        <h1 className={css.title}>Website Analytics</h1>
+      
+        <h1 className={css.title}>Color Analytics</h1>
         <MainColorPie source={source}/>
+        <h1 className={css.title}>SubColor Analytics</h1>
         <SubColorBar />
       </div>
     );

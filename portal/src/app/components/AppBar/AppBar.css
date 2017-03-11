@@ -1,5 +1,13 @@
 .AppBar {
   height: 3.4rem;
+
+  span {
+    color: white;
+  }
+
+  a {
+    margin-left: 50px;
+  }
 }
 
 .logo {
@@ -7,4 +15,8 @@
   width: 150px;
   position: absolute;
   left: 75px;
+}
+
+.navi {
+  margin-left: 800px;
 }
