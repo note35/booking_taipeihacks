@@ -42,27 +42,27 @@ class HotelModel(object):
     def get_hotel_list(self, city):
         self.open_connection()
         city_str = str(city)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", (city_str))
+        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", [city_str])
         self.db.commit()
         return r.fetchone()
 
     def get_evaluation_statistics(self, city):
         self.open_connection()
         city_str = str(city)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", (city_str))
+        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", [city_str])
         self.db.commit()
         return r.fetchone()
 
     def get_views_statistics(self, city):
         self.open_connection()
         city_str = str(city)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", (city_str))
+        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", [city_str])
         self.db.commit()
         return r.fetchone()
 
     def get_reviews_statistics(self, city):
         self.open_connection()
         city_str = str(city)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", (city_str))
+        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", [city_str])
         self.db.commit()
         return r.fetchone()
