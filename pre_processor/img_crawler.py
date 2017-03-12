@@ -71,9 +71,3 @@ def crawl_image(city_name, city_id):
 
         offset = offset + 15
         time.sleep(2)
-
-
-# print(len(hotels))
-# print(title)
-
-#print(title)

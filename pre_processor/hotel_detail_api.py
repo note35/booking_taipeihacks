@@ -64,21 +64,14 @@ def crawl_hotel_detail(city_name):
                 hotel_ids.append(hotel_id)
 
     print(len(hotel_ids))
-    #This sets up the https connection
+
     c = HTTPSConnection("distribution-xml.booking.com")
-    #we need to base 64 encode it
-    #and then decode it to acsii as python 3 stores it as a byte string
     userAndPassString = config['default']['user'] + ":" + config['default']['password']
     userAndPass = b64encode(str.encode(userAndPassString)).decode("ascii")
     headers = { 'Authorization' : 'Basic %s' %  userAndPass }
-    #then connect
     c.request('GET', '/json/bookings.getHotels?hotel_ids={},&languagecode=en'.format(", ".join(hotel_ids)), headers=headers)
-    #get the response back
     res = c.getresponse()
-    # at this point you could check the status etc
-    # this gets the page text
     data = res.read()
-    #print(data.decode("utf-8"))
     hotels = json.loads(data.decode("utf-8"))
     print(len(hotels))
 
@@ -103,7 +96,7 @@ def crawl_hotel_detail(city_name):
             "view_word, view_nr," +
             "main_color, sub_color, hex)" +
             "VALUES (\'{}\', \"{}\", \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', {}, {}, \'{}\', {}, \'{}\', \'{}\', \'{}\');".format(
-                hotel['hotel_id'], hotel["name"], hotel['countrycode'], hotel['city'], hotel['district'],
+                hotel['hotel_id'], hotel["name"].replace("\"", ""), hotel['countrycode'], hotel['city'], hotel['district'],
                 hotel['location']['latitude'], hotel['location']['longitude'],
                 hotel_img_names[idx], get_review_score_word( float( hotel['review_score'] ) ), hotel['review_score'], hotel['review_nr'],
                 get_view_word(view_r), view_r,
