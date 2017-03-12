@@ -10,7 +10,7 @@ CORS(app)
 api = Api(app)
 
 app.config["DATABASE"] = "./hotel.db"
-app.config["HOTEL_IMG"] = "./libs/color_processor/Taipei"
+app.config["HOTEL_IMG"] = "./libs/color_processor/"
 hotel_model = HotelModel()
 
 @app.teardown_appcontext
@@ -51,7 +51,7 @@ class HotelList(Resource):
 
 ## routing
 api.add_resource(EvaluationStatistics, "/evaluation_statistics/<string:city>")
-api.add_resource(ViewsStatistics, "/views_staticstics/<string:city>")
+api.add_resource(ViewsStatistics, "/views_statistics/<string:city>")
 api.add_resource(HotelList, "/hotel_list/<string:city>")
 @app.route('/static/image/<path:path>')
 def send_js(path):
