@@ -4,8 +4,10 @@ import Route from 'react-router/lib/Route';
 import Redirect from 'react-router/lib/Redirect';
 import browserHistory from 'react-router/lib/browserHistory';
 
-import App from './App';
+import TravelInfo from 'containers/TravelInfo';
+import PhotoAnalytics from 'containers/PhotoAnalytics';
 import APnxg from './AP';
+import App from './App';
 
 // const routes = (
 //   <Router history={browserHistory}>
@@ -17,8 +19,10 @@ import APnxg from './AP';
 
 const routes = (
   <Router history={browserHistory}>
-    <Route path="/app/report" component={App} />
-    <Route path="/app/photo" component={APnxg} />
+    <Route component={App}>
+    <Route path={'/app/report'} component={TravelInfo} />
+    <Route path={'/app/photo'} component={PhotoAnalytics} />
+    </Route>
   </Router>
 );
 

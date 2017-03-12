@@ -1,5 +1,14 @@
 import 'whatwg-fetch';
 
+fetch('http://localhost:5000/hotel_list/Taipei')
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    console.log('parsed json', json)
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+
 import { put, fork, takeEvery } from 'redux-saga/effects';
 
 import loadFBSDK from '../lib/FB';

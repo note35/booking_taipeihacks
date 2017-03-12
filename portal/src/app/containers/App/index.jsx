@@ -44,7 +44,7 @@ class App extends Component {
           <AppBar/>
         </Header>
         <Content>
-          <TravelInfo/>
+          {this.props.children}
         </Content>
       </Layout>
     );
