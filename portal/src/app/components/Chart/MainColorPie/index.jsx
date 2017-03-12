@@ -34,8 +34,8 @@ let config = {
     series: [{
         name: 'colors',
         colorByPoint: true,
-                size: 350,
-                innerSize: 200,
+        // size: 350,
+        // innerSize: 200,
         data: [{
             name: 'Microsoft Internet Explorer',
             y: 100.33
@@ -79,16 +79,23 @@ export default class MainColorPie extends Component {
     config.colors = colors;
     config.series[0].data = data;
 
-    myChart = Highcharts.chart('maincolorpie', config)
+    myChart = Highcharts.chart(this.props.id, config)
   }
 
   componentDidMount() {
-    myChart = Highcharts.chart('maincolorpie', config)
+    if(this.props.width)
+      config.chart.width = this.props.width;
+    
+    config.series[0].size = this.props.size;
+    config.series[0].innerSize = this.props.innerSize;
+    // config.title = { text: this.props.title }
+
+    myChart = Highcharts.chart(this.props.id, config)
   }
 
   render() {
     return (
-      <div className={css.chart} id="maincolorpie"></div>
+      <div className={css.chart} id={this.props.id}></div>
     );
   }
 }

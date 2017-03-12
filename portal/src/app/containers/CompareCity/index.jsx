@@ -3,23 +3,23 @@ import { connect } from 'react-redux';
 
 import Layout from 'components/Layout';
 
-import ChartView from 'containers/ChartView';
-import ChartFilter from 'containers/ChartFilter';
+import CompareFilter from 'containers/CompareFilter';
+import CompareView from 'containers/CompareView';
 
-import css from './TravelInfo.css';
+import css from './CompareCity.css';
 
 const { Content, Header, Row } = Layout;
 
-class TravelInfo extends Component {
+class CompareCity extends Component {
 
   render() {
     return (
       <Row>
         <div className={css.Map}>
-          <ChartView />
+          <CompareView />
         </div>
         <div className={css.Table}>
-          <ChartFilter />
+          <CompareFilter />
         </div>
       </Row>  
     );
@@ -34,4 +34,4 @@ function mapStateToProps({ taggedPlaces }) {
 
 export default connect(
   mapStateToProps,
-)(TravelInfo);
+)(CompareCity);

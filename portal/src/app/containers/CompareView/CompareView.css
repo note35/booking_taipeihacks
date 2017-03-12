@@ -4,23 +4,6 @@
   border-right: 1px solid $primary-color;
   margin-top: 10px;
   padding: 10px;
-
-  padding: .5vw;
-  font-size: 0;
-  display: -ms-flexbox;
-  -ms-flex-wrap: wrap;
-  -ms-flex-direction: column;
-  -webkit-flex-flow: row wrap; 
-  flex-flow: row wrap; 
-  display: -webkit-box;
-  display: flex;
-
-  h5 {
-    font-size: 18px !important;
-  }
-  p {
-    font-size: 14px !important;
-  }
 }
 
 .title {
@@ -42,8 +25,7 @@
   }
 }
 
-.Card {
-  margin: 25px;
-  width: 250px;
-  height: 300px;
+.chartContainer {
+  display: flex;
+  margin-left: 100px;
 }

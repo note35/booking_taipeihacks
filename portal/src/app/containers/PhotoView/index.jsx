@@ -21,8 +21,8 @@ class PhotoView extends Component {
       return ( 
         <Card className={css.Card}>
           <CardTitle
-            title={photo['hotel_name']}
-            subtitle={`Score: ${photo.score}`}
+            title={`${photo['hotel_name']}(${photo.views})`}
+            subtitle={`score: ${photo.score} reviews: ${photo.reviews}`}
           />
           <CardMedia
             aspectRatio="wide"

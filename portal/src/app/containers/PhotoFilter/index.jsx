@@ -18,7 +18,10 @@ const scores = [
 
 const cities = [
   { value: 'Taipei', label: 'Taipei' },
-  { value: 'Amsterdam', label: 'Amsterdam'}
+  { value: 'Amsterdam', label: 'Amsterdam'},
+  { value: 'Wakayama', label: 'Wakayama'},
+  { value: 'Tainan', label: 'Tainan'},
+  { value: 'Hakodate', label: 'Hakodate'},
 ];
 
 class PhotoFilter extends Component {

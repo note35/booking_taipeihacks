@@ -11,6 +11,7 @@ export default class AppBar extends Component {
         <div className={css.navi}>
           <Link to={'/app/report'}><span>Colors Report</span></Link>
           <Link to={'/app/photo'}><span>Photo Analytics</span></Link>
+          <Link to={'/app/compare'}><span>Compare City</span></Link>
         </div>
       </div>
     );

@@ -18,7 +18,10 @@ const scores = [
 
 const cities = [
   { value: 'Taipei', label: 'Taipei' },
-  { value: 'Amsterdam', label: 'Amsterdam'}
+  { value: 'Amsterdam', label: 'Amsterdam'},
+  { value: 'Wakayama', label: 'Wakayama'},
+  { value: 'Tainan', label: 'Tainan'},
+  { value: 'Hakodate', label: 'Hakodate'},
 ];
 
 class ChartFilter extends Component {
@@ -44,6 +47,19 @@ class ChartFilter extends Component {
     this.setState(newState);
   };
 
+  renderImages = () => {
+    const ChartFilter = this.props.ChartFilter;
+    const images = this.props.ChartData[ChartFilter.city][ChartFilter.score]['img_urls'];
+
+    const components = images.map((img) => {
+      return (
+        <img className={css.img} src={img.url} />
+      )
+    })
+
+    return components;
+  }
+
   render() {
     return (
       <div className={css.container}>
@@ -59,14 +75,18 @@ class ChartFilter extends Component {
         onChange={this.handleDropDownChange}
         value={this.state.value}
         />
+        <div>
+          {this.renderImages()}
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps( {ChartFilter} ) {
+function mapStateToProps( {ChartFilter, ChartData} ) {
   return {
     ChartFilter,
+    ChartData,
   };
 }
 

@@ -11,6 +11,14 @@ export const FETCH_CHART_DATA = 'FETCH_CHART_DATA';
 export const UPDATE_CHART_DATA = 'UPDATE_CHART_DATA';
 export const SET_PHOTOFILTER = 'SET_PHOTOFILTER';
 export const UPDATE_PHOTO_DATA = 'UPDATE_PHOTO_DATA';
+export const SET_COMPAREFILTER = 'SET_COMPAREFILTER'
+
+export const setCompareFilter = (filter) => {
+  return {
+    type: SET_COMPAREFILTER,
+    filter
+  }
+}
 
 export const fetchChartData = () => {
   return {

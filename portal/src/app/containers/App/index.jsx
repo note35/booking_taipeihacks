@@ -29,8 +29,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    // this.props.fetchTaggedPlaces();
-    // this.props.fbLogin();
     this.props.fetchChartData();
   }
 

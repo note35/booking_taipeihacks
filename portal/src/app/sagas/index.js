@@ -119,9 +119,17 @@ function getChartData( city ) {
 export function* fetchChartDataTask() {
   const chartDataTaipei = yield call(getChartData.bind(this, 'Taipei'));
   const chartDataAmsterdam = yield call(getChartData.bind(this, 'Amsterdam'));
+  const chartDataWakayama = yield call(getChartData.bind(this, 'Wakayama'));
+  const chartDataTainan = yield call(getChartData.bind(this, 'Tainan'));
+  const chartDataHakodate = yield call(getChartData.bind(this, 'Hakodate'));
 
-  const chartData = { Taipei: chartDataTaipei, Amsterdam: chartDataAmsterdam };
-  console.log(chartData);
+  const chartData = { 
+    Taipei: chartDataTaipei, 
+    Amsterdam: chartDataAmsterdam,
+    Wakayama:  chartDataWakayama,
+    Tainan: chartDataTainan,
+    Hakodate: chartDataHakodate,
+  };
   yield put(updateChartData(chartData));
 }
 
