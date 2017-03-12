@@ -99,3 +99,6 @@ def rgb2color(tuple_rgb):
              return_color_pair = color_pair
              current_min = diff
     return return_color_pair
+
+def color2hex(main_color, sub_color):
+    return rgb2hex(rgb(get_sub_color_info(main_color, sub_color)["rgb"]))
