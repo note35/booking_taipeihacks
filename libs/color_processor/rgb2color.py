@@ -79,7 +79,8 @@ def rgb2hex(tuple_rgb):
     Return:
         string, hex of color
     """
-    return '#%02x%02x%02x' % tuple_rgb
+    tuple_rgb_new = (int(tuple_rgb[0]), int(tuple_rgb[1]), int(tuple_rgb[2]))
+    return '#%02x%02x%02x' % tuple_rgb_new
 
 def rgb2color(tuple_rgb):
     """

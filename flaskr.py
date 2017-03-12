@@ -18,7 +18,7 @@ class EvaluationStatistics(Resource):
         ret = hotel_model.get_evaluation_statistics(city)
         if not ret:
             abort(404, message="City {} does not exist".format(city))
-        return jsonify({})
+        return jsonify(ret)
 
 class ViewsStatistics(Resource):
     def get(self, city):
