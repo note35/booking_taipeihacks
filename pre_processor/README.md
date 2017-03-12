@@ -1,5 +1,5 @@
-mkdir hotel_images
+mkdir pre_processor/hotel_images
 
-python crawl_city.py
+python flaskr.py
 
-enter the city you want to analyze
+http://127.0.0.1:5000/crawl_city/<city>

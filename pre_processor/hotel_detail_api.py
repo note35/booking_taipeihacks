@@ -8,8 +8,7 @@ import random
 from tqdm import tqdm
 import configparser
 
-sys.path.insert(0, '../libs/color_processor/')
-from color_processor import calc_color_to_dict, write2file
+from libs.color_processor.color_processor import calc_color_to_dict, write2file
 
 def get_review_score_word(score):
     if score >= 9:
@@ -40,10 +39,10 @@ def get_view_word(score):
 
 def crawl_hotel_detail(city_name, image_urls):
     config = configparser.ConfigParser()
-    config.read('../secret.ini')
-    image_path = "hotel_images/" + city_name + '/'
-    hotel_colors_file = "hotel_images/" + city_name + "/all.json"
-    db_path = "../hotel.db"
+    config.read('secret.ini')
+    image_path = "pre_processor/hotel_images/" + city_name + '/'
+    hotel_colors_file = "pre_processor/hotel_images/" + city_name + "/all.json"
+    db_path = "hotel.db"
 
     if not os.path.isfile(hotel_colors_file):
         hotel_colors = calc_color_to_dict(image_path)
@@ -85,22 +84,22 @@ def crawl_hotel_detail(city_name, image_urls):
         hotel_id = hotel['hotel_id']
         try:
             hotel_color = hotel_colors[hotel_id]
+
+            db.cursor().execute(
+                "INSERT INTO \"Hotels\" " +
+                "(hotel_id, hotel_name, countrycode, city, district," +
+                "latitude, longitude," +
+                "img, review_score_word, review_score, review_nr," +
+                "view_word, view_nr," +
+                "main_color, sub_color, hex)" +
+                "VALUES (\'{}\', \"{}\", \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', {}, {}, \'{}\', {}, \'{}\', \'{}\', \'{}\');".format(
+                    hotel['hotel_id'], hotel["name"].replace("\"", ""), hotel['countrycode'], hotel['city'], hotel['district'],
+                    hotel['location']['latitude'], hotel['location']['longitude'],
+                    image_urls[hotel_id], get_review_score_word( float( hotel['review_score'] ) ), hotel['review_score'], hotel['review_nr'],
+                    get_view_word(view_r), view_r,
+                    hotel_color['main_color'], hotel_color['sub_color'], hotel_color['hex']
+                )
+            )
+            db.commit()
         except KeyError:
             next
-
-        db.cursor().execute(
-            "INSERT INTO \"Hotels\" " +
-            "(hotel_id, hotel_name, countrycode, city, district," +
-            "latitude, longitude," +
-            "img, review_score_word, review_score, review_nr," +
-            "view_word, view_nr," +
-            "main_color, sub_color, hex)" +
-            "VALUES (\'{}\', \"{}\", \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', {}, {}, \'{}\', {}, \'{}\', \'{}\', \'{}\');".format(
-                hotel['hotel_id'], hotel["name"].replace("\"", ""), hotel['countrycode'], hotel['city'], hotel['district'],
-                hotel['location']['latitude'], hotel['location']['longitude'],
-                image_urls[idx], get_review_score_word( float( hotel['review_score'] ) ), hotel['review_score'], hotel['review_nr'],
-                get_view_word(view_r), view_r,
-                hotel_color['main_color'], hotel_color['sub_color'], hotel_color['hex']
-            )
-        )
-        db.commit()

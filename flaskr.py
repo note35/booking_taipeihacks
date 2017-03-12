@@ -1,8 +1,11 @@
+from multiprocessing import Pool
+
 from flask import Flask, jsonify, send_from_directory
 from flask_restful import reqparse, abort, Api, Resource
 from flask_cors import CORS, cross_origin
 
 from models.hotel import HotelModel
+from pre_processor.crawl_city import crawl_city
 
 app = Flask(__name__)
 CORS(app)
@@ -16,6 +19,12 @@ hotel_model = HotelModel()
 @app.teardown_appcontext
 def close_connection(exception):
     hotel_model.close_connection(exception)
+
+class CrawlCity(Resource):
+    def get(self, city):
+        pool = Pool(processes=1)
+        result = pool.apply_async(crawl_city, [city])
+        return jsonify({'status': 'success'})
 
 class EvaluationStatistics(Resource):
     def get(self, city):
@@ -50,6 +59,7 @@ class HotelList(Resource):
 
 
 ## routing
+api.add_resource(CrawlCity, "/crawl_city/<string:city>")
 api.add_resource(EvaluationStatistics, "/evaluation_statistics/<string:city>")
 api.add_resource(ViewsStatistics, "/views_statistics/<string:city>")
 api.add_resource(HotelList, "/hotel_list/<string:city>")
