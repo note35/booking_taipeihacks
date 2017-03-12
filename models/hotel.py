@@ -32,6 +32,7 @@ class HotelModel(object):
         self.db.cursor().execute(
             "CREATE TABLE IF NOT EXISTS main.Hotels(" +
             "ID integer PRIMARY KEY AUTOINCREMENT, " +
+            "hotel_name string, " + 
             "hotel_id string, " +
             "main_color string, " +
             "sub_color string, " +
@@ -69,7 +70,7 @@ class HotelModel(object):
         self.db.row_factory = sqlite3.Row
         city_str = str(city)
         ret_json = {
-            "city": city_str, 
+            "city": city_str,
         }
 
         evaluation_words = ["wonderful", "very_good", "good", "pleasant", "normal", "no_rating"]
@@ -115,7 +116,7 @@ class HotelModel(object):
                     try:
                         sub_component = {
                             "name": key2,
-                            "hex": rgb2hex(rgb(get_sub_color_info(key, key2)["rgb"])), 
+                            "hex": rgb2hex(rgb(get_sub_color_info(key, key2)["rgb"])),
                             "sub_color_scale": value2/main_color_cnt_table[key],
                             "sub_color_orig": value2
                         }
