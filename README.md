@@ -1,12 +1,8 @@
 # Booking_taipeihacks - City Color Analyzer
 
-This project is a prototype.
+*Note: This project is a prototype.*
 
-City Color Analyzer is a tool for showing the major colors of each main photo in hotels of different cities.
-
-While hosts of hotels got those information, they can provide booking.com better photos for better selling.
-
-On the other side, users can have better user experience while using search engine at booking.com.
+City Color Analyzer is a tool for showing the major colors of each main photo in hotels of different cities. While hosts of hotels got those information, they can provide booking.com better photos for better selling. On the other side, users can have better user experience while using search engine at booking.com.
 
 ## Introduction
 
@@ -47,6 +43,7 @@ This project contains two part
 2. For initializing the project, you need to install all requirement first.
 
     cd portal
+
     npm install
 
 3. After you installed those requirement, you can run the program by command below.
