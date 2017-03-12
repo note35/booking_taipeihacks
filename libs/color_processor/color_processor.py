@@ -11,9 +11,9 @@ from os.path import isfile, join
 from PIL import Image
 from tqdm import tqdm
 
-from rgb2color import rgb2color, rgb, rgb2hex
+from .rgb2color import rgb2color, rgb, rgb2hex
 
-NUM_CLUSTERS = 4
+NUM_CLUSTERS = 3
 WIDTH=128
 HEIGHT=128
 

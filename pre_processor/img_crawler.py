@@ -10,7 +10,7 @@ import json
 
 def crawl_image_by_api(city_name, city_id):
     config = configparser.ConfigParser()
-    config.read('../secret.ini')
+    config.read('secret.ini')
 
     image_urls = []
     image_dir_path = 'hotel_images/' + city_name + '/'
@@ -50,7 +50,7 @@ def crawl_image(city_name, city_id):
 
     image_urls = {}
 
-    image_dir_path = 'hotel_images/' + city_name + '/'
+    image_dir_path = 'pre_processor/hotel_images/' + city_name + '/'
     if not os.path.exists(image_dir_path):
         os.makedirs(image_dir_path)
 

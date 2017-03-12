@@ -8,8 +8,7 @@ import random
 from tqdm import tqdm
 import configparser
 
-sys.path.insert(0, '../libs/color_processor/')
-from color_processor import calc_color_to_dict, write2file
+from libs.color_processor.color_processor import calc_color_to_dict, write2file
 
 def get_review_score_word(score):
     if score >= 9:
@@ -40,10 +39,10 @@ def get_view_word(score):
 
 def crawl_hotel_detail(city_name, image_urls):
     config = configparser.ConfigParser()
-    config.read('../secret.ini')
-    image_path = "hotel_images/" + city_name + '/'
-    hotel_colors_file = "hotel_images/" + city_name + "/all.json"
-    db_path = "../hotel.db"
+    config.read('secret.ini')
+    image_path = "pre_processor/hotel_images/" + city_name + '/'
+    hotel_colors_file = "pre_processor/hotel_images/" + city_name + "/all.json"
+    db_path = "hotel.db"
 
     if not os.path.isfile(hotel_colors_file):
         hotel_colors = calc_color_to_dict(image_path)
