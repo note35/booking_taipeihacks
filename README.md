@@ -4,6 +4,21 @@
 
 City Color Analyzer is a tool for showing the major colors of each main photo in hotels of different cities. While hosts of hotels got those information, they can provide booking.com better photos for better selling. On the other side, users can have better user experience while using search engine at booking.com.
 
+Demo:
+
+1. Compare between cities:
+
+![compare](examples/compare.png)
+
+2. The detail of colors:
+
+![color_detail](examples/color_detail.png)
+
+3. Photos with high evaluation:
+
+![example](examples/example.png)
+
+
 ## Introduction
 
 This project contains two part
@@ -75,3 +90,13 @@ In this project, there is a color processor for finding color in photos.
 The method in this processor is kmeans, and the cluster of kmeans by default is 4.
 
     NUM_CLUSTERS = 4
+
+For example:
+
+Original Photo:
+
+    ![Original Photo](examples/input.jpg)
+
+Major Color of Photo:
+
+    ![Major Color of Photo](examples/output.png)
