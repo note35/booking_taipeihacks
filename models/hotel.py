@@ -147,10 +147,3 @@ class HotelModel(object):
         r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", [city_str])
         self.db.commit()
         return r.fetchone()
-
-    def get_reviews_statistics(self, city):
-        self.open_connection()
-        city_str = str(city)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", [city_str])
-        self.db.commit()
-        return r.fetchone()

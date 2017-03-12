@@ -31,13 +31,6 @@ class ViewsStatistics(Resource):
             abort(404, message="City {} does not exist".format(city))
         return jsonify({})
 
-class ReviewsStatistics(Resource):
-    def get(self, city):
-        ret = hotel_model.get_reviews_statistics(city)
-        if not ret:
-            abort(404, message="City {} does not exist".format(city))
-        return jsonify({})
-
 class HotelList(Resource):
     def get(self, city):
         ret = hotel_model.get_hotel_list(city)
@@ -59,7 +52,6 @@ class HotelList(Resource):
 ## routing
 api.add_resource(EvaluationStatistics, "/evaluation_statistics/<string:city>")
 api.add_resource(ViewsStatistics, "/views_staticstics/<string:city>")
-api.add_resource(ReviewsStatistics, "/reviews_staticstics/<string:city>")
 api.add_resource(HotelList, "/hotel_list/<string:city>")
 @app.route('/static/image/<path:path>')
 def send_js(path):
