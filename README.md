@@ -1,4 +1,4 @@
-# Booking_taipeihacks - City Color Analyzer
+# Booking taipeihacks - City Color Analyzer
 
 *Note: This project is a prototype.*
 
@@ -14,39 +14,43 @@ This project contains two part
 
 ## Setup - Backend
 
-1. For initializing the project, you need to install all requirement first.
+0.(Option) Running python in virtualenv
+
+    virtualenv -p /usr/local/bin/python3.5 venv
+    . venv3.5/bin/activate
+
+1.For initializing the project, you need to install all requirement first.
 
     pip install -r requirement.txt
 
-2. After you installed those requirement, you can run the program by command below.
+2.After you installed those requirement, you can run the program by command below.
 
     python flaskr.py
 
-3. Then, you can access the restful API.
+3.Then, you can access the restful API.
 
-    Get evaluation statistics of given city: 
+    - Get evaluation statistics of given city: 
 
         http://127.0.0.1:5000/evaluation_statistics/<city>
 
-    Get views statistics of given city: 
+    - Get views statistics of given city: 
 
         http://127.0.0.1:5000/views_statistics/<city>
 
-    Get all hotels in given city:
+    - Get all hotels in given city:
 
         http://127.0.0.1:5000/hotel_list/<city>
 
 ## Setup - Frontend
 
-1. Please run backend engine first.
+1.Please run backend engine first.
 
-2. For initializing the project, you need to install all requirement first.
+2.For initializing the project, you need to install all requirement first.
 
     cd portal
-
     npm install
 
-3. After you installed those requirement, you can run the program by command below.
+3.After you installed those requirement, you can run the program by command below.
 
     npm run production
 
