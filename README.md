@@ -54,6 +54,10 @@ This project contains two part
 
     npm run production
 
+4.Then, you can access the portal.
+
+    http://127.0.0.1:8000/app/report
+
 ## Color Processor
 
 In this project, there is a color processor for finding color in photos.
