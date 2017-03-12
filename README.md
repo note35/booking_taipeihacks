@@ -27,13 +27,13 @@ This project contains two part
 
     mkdir pre_processor/hotel_images
 
-2.After you installed those requirement, you can run the program by command below.
+3.After you installed those requirement, you can run the program by command below.
 
     python flaskr.py
 
-3.Then, you can access the restful API.
+4.Then, you can access the restful API.
 
-    - Crawl the given city in order to analyze:
+    - Crawl the given city in order to analyze (take some time, please see the console) :
 
         http://127.0.0.1:5000/crawl_city/<city>
 
