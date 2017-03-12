@@ -1,0 +1,34 @@
+@import "theme/default";
+
+.Table {
+  padding: 0px 25px;
+}
+
+.Head {
+  display: flex;
+  font-weight: bold;
+  font-size: 18px;
+  color: $color-table-head;
+
+  > span {
+    padding: 8px 16px;
+    
+    &:nth-child(1) {
+      flex: 2;
+    }
+    &:nth-child(2) {
+      flex: 1;
+    }
+  }
+  border-bottom: 2px solid;
+}
+
+.Loading {
+  color: $second-color;
+  margin-left: 45%;
+  margin-top: 50%;
+}
+
+.Body {
+  color: $color-text-primary;
+}
