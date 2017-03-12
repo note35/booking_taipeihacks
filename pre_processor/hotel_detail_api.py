@@ -38,7 +38,7 @@ def get_view_word(score):
     else:
         return 'unknown'
 
-def crawl_hotel_detail(city_name):
+def crawl_hotel_detail(city_name, image_urls):
     config = configparser.ConfigParser()
     config.read('../secret.ini')
     image_path = "hotel_images/" + city_name + '/'
@@ -98,7 +98,7 @@ def crawl_hotel_detail(city_name):
             "VALUES (\'{}\', \"{}\", \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', {}, {}, \'{}\', {}, \'{}\', \'{}\', \'{}\');".format(
                 hotel['hotel_id'], hotel["name"].replace("\"", ""), hotel['countrycode'], hotel['city'], hotel['district'],
                 hotel['location']['latitude'], hotel['location']['longitude'],
-                hotel_img_names[idx], get_review_score_word( float( hotel['review_score'] ) ), hotel['review_score'], hotel['review_nr'],
+                image_urls[idx], get_review_score_word( float( hotel['review_score'] ) ), hotel['review_score'], hotel['review_nr'],
                 get_view_word(view_r), view_r,
                 hotel_color['main_color'], hotel_color['sub_color'], hotel_color['hex']
             )
