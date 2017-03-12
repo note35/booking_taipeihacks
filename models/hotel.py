@@ -1,6 +1,6 @@
 import sqlite3
 from flask import current_app
-from libs.color_processor.rgb2color import rgb2hex, rgb, get_sub_color_info
+from libs.color_processor.rgb2color import color2hex
 
 main_color_hex = {
     "Whites/Pastels": "#ffffff",
@@ -111,7 +111,7 @@ class HotelModel(object):
                 try:
                     sub_component = {
                         "name": key2,
-                        "hex": rgb2hex(rgb(get_sub_color_info(key, key2)["rgb"])),
+                        "hex": color2hex(key, key2),
                         "sub_color_scale": value2/main_color_cnt_table[key],
                         "sub_color_orig": value2
                     }
