@@ -4,11 +4,6 @@ from .api_connect import get_api_connector
 from .img_crawler import crawl_image, crawl_image_by_api
 from .hotel_detail_api import crawl_hotel_detail
 
-if __name__ == "__main__":
-    print("Enter the city:")
-    city_name = sys.stdin.readline().strip()
-    print(city_name)
-
 def crawl_city(city_name):
     c, headers = get_api_connector()
     c.request('GET', '/json/bookings.autocomplete?text={},&languagecode=en'.format(city_name), headers=headers)

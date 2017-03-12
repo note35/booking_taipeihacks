@@ -1,3 +1,5 @@
+from multiprocessing import Pool
+
 from flask import Flask, jsonify, send_from_directory
 from flask_restful import reqparse, abort, Api, Resource
 from flask_cors import CORS, cross_origin
@@ -20,7 +22,8 @@ def close_connection(exception):
 
 class CrawlCity(Resource):
     def get(self, city):
-        crawl_city(city)
+        pool = Pool(processes=1)
+        result = pool.apply_async(crawl_city, [city])
         return jsonify({'status': 'success'})
 
 class EvaluationStatistics(Resource):
