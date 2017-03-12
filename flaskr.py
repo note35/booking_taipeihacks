@@ -12,8 +12,6 @@ api = Api(app)
 app.config["DATABASE"] = "./hotel.db"
 hotel_model = HotelModel()
 
-@app.route("/")
-
 @app.teardown_appcontext
 def close_connection(exception):
     hotel_model.close_connection(exception)
@@ -23,7 +21,7 @@ class EvaluationStatistics(Resource):
         ret = hotel_model.get_evaluation_statistics(city)
         if not ret:
             abort(404, message="City {} does not exist".format(city))
-        return jsonify({})
+        return jsonify(ret)
 
 class ViewsStatistics(Resource):
     def get(self, city):
