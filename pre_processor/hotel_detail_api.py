@@ -97,13 +97,13 @@ def crawl_hotel_detail(city_name):
 
         db.cursor().execute(
             "INSERT INTO \"Hotels\" " +
-            "(hotel_id, countrycode, city, district," +
+            "(hotel_id, hotel_name, countrycode, city, district," +
             "latitude, longitude," +
             "img, review_score_word, review_score, review_nr," +
             "view_word, view_nr," +
             "main_color, sub_color, hex)" +
-            "VALUES (\'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', {}, {}, \'{}\', {}, \'{}\', \'{}\', \'{}\');".format(
-                hotel['hotel_id'], hotel['countrycode'], hotel['city'], hotel['district'],
+            "VALUES (\'{}\', \"{}\", \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', {}, {}, \'{}\', {}, \'{}\', \'{}\', \'{}\');".format(
+                hotel['hotel_id'], hotel["name"], hotel['countrycode'], hotel['city'], hotel['district'],
                 hotel['location']['latitude'], hotel['location']['longitude'],
                 hotel_img_names[idx], get_review_score_word( float( hotel['review_score'] ) ), hotel['review_score'], hotel['review_nr'],
                 get_view_word(view_r), view_r,

@@ -3,7 +3,7 @@ import configparser
 from http.client import HTTPSConnection
 from base64 import b64encode
 import json
-from img_crawler import crawl_image
+from img_crawler import crawl_image, crawl_image_by_api
 from hotel_detail_api import crawl_hotel_detail
 
 print("Enter the city:")
@@ -26,5 +26,6 @@ for result in results:
     if 'dest_type' in result and result['dest_type'] == 'city':
         dest_id = result['dest_id']
         city_name = result['city_name']
+        #crawl_image_by_api(city_name, dest_id)
         crawl_image(city_name, dest_id)
         crawl_hotel_detail(city_name)

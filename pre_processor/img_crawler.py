@@ -3,6 +3,41 @@ import urllib.request
 import requests
 from bs4 import BeautifulSoup
 import os
+import configparser
+from http.client import HTTPSConnection
+from base64 import b64encode
+import json
+
+def crawl_image_by_api(city_name, city_id):
+    config = configparser.ConfigParser()
+    config.read('../secret.ini')
+
+    image_dir_path = 'hotel_images/' + city_name + '/'
+    if not os.path.exists(image_dir_path):
+        os.makedirs(image_dir_path)
+
+    c = HTTPSConnection("distribution-xml.booking.com")
+    userAndPassString = config['default']['user'] + ":" + config['default']['password']
+    userAndPass = b64encode(str.encode(userAndPassString)).decode("ascii")
+    headers = { 'Authorization' : 'Basic %s' %  userAndPass }
+    c.request('GET', '/json/bookings.getHotels?city_ids={},&languagecode=en'.format(city_id), headers=headers)
+    res = c.getresponse()
+    data = res.read()
+    results = json.loads(data.decode("utf-8"))
+
+    for result in results:
+        if 'hotel_id' in result:
+            hotel_id = result['hotel_id']
+            c.request('GET', '/json/bookings.getHotelDescriptionPhotos?hotel_ids={}&show_main_photo=1'.format(hotel_id), headers=headers)
+            res = c.getresponse()
+            data = res.read()
+            image_results = json.loads(data.decode("utf-8"))
+            if len(image_results) > 0:
+                image = image_results[0]
+                img_url = image['url_original']
+                img_type = img_url.split('.')
+                img_type = img_type[len(img_type)-1]
+                urllib.request.urlretrieve(img_url, image_dir_path+str(hotel_id)+'.'+img_type)
 
 def crawl_image(city_name, city_id):
     #fill offset in the end of crawl_url
