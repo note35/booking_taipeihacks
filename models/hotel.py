@@ -65,6 +65,75 @@ class HotelModel(object):
         self.db.commit()
         return r
 
+    def seach_city_with_view_word(self, city, view_word):
+        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=? AND view_word=?", [city, view_word])
+        self.db.commit()
+        return r
+
+
+    def get_main_components(self, r):
+        main_color_cnt_table = {
+            "Whites/Pastels": 0,
+            "Grays": 0,
+            "Blues": 0,
+            "Greens": 0,
+            "Yellow": 0,
+            "Browns": 0,
+            "Oranges": 0,
+            "Pinks/Violets": 0
+        }
+
+        sub_color_cnt_table = {
+            "Whites/Pastels": {},
+            "Grays": {},
+            "Blues": {},
+            "Greens": {},
+            "Yellow": {},
+            "Browns": {},
+            "Oranges": {},
+            "Pinks/Violets": {}
+        }
+
+        for item in r:
+            for color_tuple in zip(dict(item)["main_color"].split(","), dict(item)["sub_color"].split(","), dict(item)["hex"].split(",")):
+                main_color_cnt_table[color_tuple[0]] += 1
+                try:
+                    sub_color_cnt_table[color_tuple[0]][color_tuple[1]] += 1
+                except KeyError:
+                    sub_color_cnt_table[color_tuple[0]][color_tuple[1]] = 1
+
+        total_main_color = sum(value for value in main_color_cnt_table.values())
+
+        main_components = []
+        for key, value in main_color_cnt_table.items():
+            sub_components = []
+            for key2, value2 in sub_color_cnt_table[key].items():
+                try:
+                    sub_component = {
+                        "name": key2,
+                        "hex": rgb2hex(rgb(get_sub_color_info(key, key2)["rgb"])),
+                        "sub_color_scale": value2/main_color_cnt_table[key],
+                        "sub_color_orig": value2
+                    }
+                    sub_components.append(sub_component)
+                except ZeroDivisionError:
+                    pass
+
+            try:
+                main_component = {
+                    "name": key,
+                    "hex": main_color_hex[key],
+                    "main_color_scale": value/total_main_color,
+                    "main_color_orig": value,
+                    "sub_color": sub_components
+                }
+                main_components.append(main_component)
+            except ZeroDivisionError:
+                pass
+
+        return main_components
+
+
     def get_evaluation_statistics(self, city):
         self.open_connection()
         self.db.row_factory = sqlite3.Row
@@ -77,64 +146,7 @@ class HotelModel(object):
         for evaluation_word in evaluation_words:
             r = self.seach_city_with_review_score_word(city_str, evaluation_word)
 
-            main_color_cnt_table = {
-                "Whites/Pastels": 0,
-                "Grays": 0,
-                "Blues": 0,
-                "Greens": 0,
-                "Yellow": 0,
-                "Browns": 0,
-                "Oranges": 0,
-                "Pinks/Violets": 0
-            }
-
-            sub_color_cnt_table = {
-                "Whites/Pastels": {},
-                "Grays": {},
-                "Blues": {},
-                "Greens": {},
-                "Yellow": {},
-                "Browns": {},
-                "Oranges": {},
-                "Pinks/Violets": {}
-            }
-
-            for item in r:
-                for color_tuple in zip(dict(item)["main_color"].split(","), dict(item)["sub_color"].split(","), dict(item)["hex"].split(",")):
-                    main_color_cnt_table[color_tuple[0]] += 1
-                    try:
-                        sub_color_cnt_table[color_tuple[0]][color_tuple[1]] += 1
-                    except KeyError:
-                        sub_color_cnt_table[color_tuple[0]][color_tuple[1]] = 1
-
-            total_main_color = sum(value for value in main_color_cnt_table.values())
-
-            main_components = []
-            for key, value in main_color_cnt_table.items():
-                sub_components = []
-                for key2, value2 in sub_color_cnt_table[key].items():
-                    try:
-                        sub_component = {
-                            "name": key2,
-                            "hex": rgb2hex(rgb(get_sub_color_info(key, key2)["rgb"])),
-                            "sub_color_scale": value2/main_color_cnt_table[key],
-                            "sub_color_orig": value2
-                        }
-                        sub_components.append(sub_component)
-                    except ZeroDivisionError:
-                        pass
-
-                try:
-                    main_component = {
-                        "name": key,
-                        "hex": main_color_hex[key],
-                        "main_color_scale": value/total_main_color,
-                        "main_color_orig": value,
-                        "sub_color": sub_components
-                    }
-                    main_components.append(main_component)
-                except ZeroDivisionError:
-                    pass
+            main_components = self.get_main_components(r)
 
             ret_json[evaluation_word] = {}
             ret_json[evaluation_word]["main_color"] = main_components
@@ -143,7 +155,20 @@ class HotelModel(object):
 
     def get_views_statistics(self, city):
         self.open_connection()
+        self.db.row_factory = sqlite3.Row
         city_str = str(city)
-        r = self.db.cursor().execute("SELECT * FROM main.Hotels WHERE city=?;", [city_str])
-        self.db.commit()
-        return r.fetchone()
+
+        ret_json = {
+            "city": city_str,
+        }
+
+        view_words = ["very_hot", "hot", "normal", "cold", "unknown"]
+        for view_word in view_words:
+            r = self.seach_city_with_view_word(city_str, view_word)
+
+            main_components = self.get_main_components(r)
+
+            ret_json[view_word] = {}
+            ret_json[view_word]["main_color"] = main_components
+
+        return ret_json

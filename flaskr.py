@@ -29,7 +29,7 @@ class ViewsStatistics(Resource):
         ret = hotel_model.get_views_statistics(city)
         if not ret:
             abort(404, message="City {} does not exist".format(city))
-        return jsonify({})
+        return jsonify(ret)
 
 class HotelList(Resource):
     def get(self, city):
