@@ -135,7 +135,8 @@ class HotelModel(object):
                 except ZeroDivisionError:
                     pass
 
-            ret_json[evaluation_word] = main_components
+            ret_json[evaluation_word] = {}
+            ret_json[evaluation_word]["main_color"] = main_components
 
         return ret_json
 
