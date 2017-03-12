@@ -10,6 +10,7 @@ CORS(app)
 api = Api(app)
 
 app.config["DATABASE"] = "./hotel.db"
+app.config["HOTEL_IMG"] = "./libs/color_processor/Taipei"
 hotel_model = HotelModel()
 
 @app.teardown_appcontext
@@ -62,7 +63,7 @@ api.add_resource(ReviewsStatistics, "/reviews_staticstics/<string:city>")
 api.add_resource(HotelList, "/hotel_list/<string:city>")
 @app.route('/static/image/<path:path>')
 def send_js(path):
-    return send_from_directory('pre_processor/hotel_images/', path)
+    return send_from_directory(app.config["HOTEL_IMG"], path)
 
 if __name__ == "__main__":
     with app.app_context():
