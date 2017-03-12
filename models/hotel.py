@@ -70,8 +70,7 @@ class HotelModel(object):
         self.db.commit()
         return r
 
-
-    def get_main_components(self, r):
+    def get_main_components(self, r, city):
         main_color_cnt_table = {
             "Whites/Pastels": 0,
             "Grays": 0,
@@ -94,6 +93,9 @@ class HotelModel(object):
             "Pinks/Violets": {}
         }
 
+        main_components = []
+        img_components = []
+
         for item in r:
             for color_tuple in zip(dict(item)["main_color"].split(","), dict(item)["sub_color"].split(","), dict(item)["hex"].split(",")):
                 main_color_cnt_table[color_tuple[0]] += 1
@@ -101,10 +103,17 @@ class HotelModel(object):
                     sub_color_cnt_table[color_tuple[0]][color_tuple[1]] += 1
                 except KeyError:
                     sub_color_cnt_table[color_tuple[0]][color_tuple[1]] = 1
+            img_component = {
+                "reviews": dict(item)["review_nr"],
+                "views": dict(item)["view_word"],
+                "score": dict(item)["review_score"],
+                "hotel_name": dict(item)["hotel_name"],
+                "url": city+"/"+dict(item)["img"]
+            }
+            img_components.append(img_component)
 
         total_main_color = sum(value for value in main_color_cnt_table.values())
 
-        main_components = []
         for key, value in main_color_cnt_table.items():
             sub_components = []
             for key2, value2 in sub_color_cnt_table[key].items():
@@ -131,7 +140,7 @@ class HotelModel(object):
             except ZeroDivisionError:
                 pass
 
-        return sorted(main_components, key=lambda k: k["main_color_orig"], reverse=True)
+        return (sorted(main_components, key=lambda k: k["main_color_orig"], reverse=True), img_components)
 
 
     def get_evaluation_statistics(self, city):
@@ -146,10 +155,11 @@ class HotelModel(object):
         for evaluation_word in evaluation_words:
             r = self.seach_city_with_review_score_word(city_str, evaluation_word)
 
-            main_components = self.get_main_components(r)
+            main_components = self.get_main_components(r, city_str)
 
             ret_json[evaluation_word] = {}
-            ret_json[evaluation_word]["main_color"] = main_components
+            ret_json[evaluation_word]["main_color"] = main_components[0]
+            ret_json[evaluation_word]["img_urls"] = main_components[1]
 
         return ret_json
 
@@ -166,9 +176,10 @@ class HotelModel(object):
         for view_word in view_words:
             r = self.seach_city_with_view_word(city_str, view_word)
 
-            main_components = self.get_main_components(r)
+            main_components = self.get_main_components(r, city_str)
 
             ret_json[view_word] = {}
-            ret_json[view_word]["main_color"] = main_components
+            ret_json[view_word]["main_color"] = main_components[0]
+            ret_json[view_word]["img_urls"] = main_components[1]
 
         return ret_json
