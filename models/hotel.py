@@ -70,7 +70,7 @@ class HotelModel(object):
         self.db.commit()
         return r
 
-    def get_main_components(self, r, city):
+    def get_main_components(self, r):
         main_color_cnt_table = {
             "Whites/Pastels": 0,
             "Grays": 0,
@@ -108,7 +108,7 @@ class HotelModel(object):
                 "views": dict(item)["view_word"],
                 "score": dict(item)["review_score"],
                 "hotel_name": dict(item)["hotel_name"],
-                "url": city+"/"+dict(item)["img"]
+                "url": dict(item)["img"]
             }
             img_components.append(img_component)
 
@@ -155,7 +155,7 @@ class HotelModel(object):
         for evaluation_word in evaluation_words:
             r = self.seach_city_with_review_score_word(city_str, evaluation_word)
 
-            main_components = self.get_main_components(r, city_str)
+            main_components = self.get_main_components(r)
 
             ret_json[evaluation_word] = {}
             ret_json[evaluation_word]["main_color"] = main_components[0]
@@ -176,7 +176,7 @@ class HotelModel(object):
         for view_word in view_words:
             r = self.seach_city_with_view_word(city_str, view_word)
 
-            main_components = self.get_main_components(r, city_str)
+            main_components = self.get_main_components(r)
 
             ret_json[view_word] = {}
             ret_json[view_word]["main_color"] = main_components[0]
