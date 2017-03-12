@@ -48,7 +48,7 @@ def crawl_image(city_name, city_id):
     crawl_url = "http://www.booking.com/searchresults.zh-tw.html?aid=304142&label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmaOcBiAEBmAEwuAEHyAEM2AEB6AEB-AELqAID&sid=b2b6b157d462bd7727c111fc28a2a6c1&city=-2637882&class_interval=1&dest_id={}&dest_type=city&group_adults=2&group_children=0&label_click=undef&mih=0&no_rooms=1&raw_dest_type=city&room1=A%2CA&sb_price_type=total&rows=15&offset=".format(city_id)
     offset = 0
 
-    image_urls = []
+    image_urls = {}
 
     image_dir_path = 'hotel_images/' + city_name + '/'
     if not os.path.exists(image_dir_path):
@@ -71,7 +71,7 @@ def crawl_image(city_name, city_id):
             print(hotel_id)
             title = hotel.select("span.sr-hotel__name")[0].text.strip()
             img_url = hotel.select("a.sr_item_photo_link img")[0]['src']
-            image_urls.append(img_url)
+            image_urls[hotel_id] = img_url
             img_type = img_url.split('.')
             img_type = img_type[len(img_type)-1]
             urllib.request.urlretrieve(img_url, image_dir_path+str(hotel_id)+'.'+img_type)
