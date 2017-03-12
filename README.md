@@ -8,15 +8,15 @@ Demo:
 
 1. Compare between cities:
 
-![compare](examples/compare.png)
+![compare](https://github.com/note35/booking_taipeihacks/blob/master/examples/compare.png)
 
 2. The detail of colors:
 
-![color_detail](examples/color_detail.png)
+![color_detail](https://github.com/note35/booking_taipeihacks/blob/master/examples/color_detail.png)
 
 3. Photos with high evaluation:
 
-![example](examples/example.png)
+![example](https://github.com/note35/booking_taipeihacks/blob/master/examples/example.png)
 
 
 ## Introduction
@@ -95,8 +95,8 @@ For example:
 
 Original Photo:
 
-    ![Original Photo](examples/input.jpg)
+![Original Photo](https://github.com/note35/booking_taipeihacks/blob/master/examples/input.jpg)
 
 Major Color of Photo:
 
-    ![Major Color of Photo](examples/output.png)
+![Major Color of Photo](https://github.com/note35/booking_taipeihacks/blob/master/examples/output.png)
