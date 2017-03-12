@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_restful import reqparse, abort, Api, Resource
 from flask_cors import CORS, cross_origin
 
@@ -60,7 +60,9 @@ api.add_resource(EvaluationStatistics, "/evaluation_statistics/<string:city>")
 api.add_resource(ViewsStatistics, "/views_staticstics/<string:city>")
 api.add_resource(ReviewsStatistics, "/reviews_staticstics/<string:city>")
 api.add_resource(HotelList, "/hotel_list/<string:city>")
-
+@app.route('/static/image/<path:path>')
+def send_js(path):
+    return send_from_directory('pre_processor/hotel_images/', path)
 
 if __name__ == "__main__":
     with app.app_context():
