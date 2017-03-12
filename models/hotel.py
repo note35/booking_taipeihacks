@@ -32,7 +32,7 @@ class HotelModel(object):
         self.db.cursor().execute(
             "CREATE TABLE IF NOT EXISTS main.Hotels(" +
             "ID integer PRIMARY KEY AUTOINCREMENT, " +
-            "hotel_name string, " + 
+            "hotel_name string, " +
             "hotel_id string, " +
             "main_color string, " +
             "sub_color string, " +
