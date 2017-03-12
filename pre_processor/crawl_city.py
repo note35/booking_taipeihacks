@@ -21,3 +21,4 @@ for result in results:
         #crawl_image_by_api(city_name, dest_id)
         image_urls = crawl_image(city_name, dest_id)
         crawl_hotel_detail(city_name, image_urls)
+        break

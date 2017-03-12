@@ -85,22 +85,22 @@ def crawl_hotel_detail(city_name, image_urls):
         hotel_id = hotel['hotel_id']
         try:
             hotel_color = hotel_colors[hotel_id]
+
+            db.cursor().execute(
+                "INSERT INTO \"Hotels\" " +
+                "(hotel_id, hotel_name, countrycode, city, district," +
+                "latitude, longitude," +
+                "img, review_score_word, review_score, review_nr," +
+                "view_word, view_nr," +
+                "main_color, sub_color, hex)" +
+                "VALUES (\'{}\', \"{}\", \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', {}, {}, \'{}\', {}, \'{}\', \'{}\', \'{}\');".format(
+                    hotel['hotel_id'], hotel["name"].replace("\"", ""), hotel['countrycode'], hotel['city'], hotel['district'],
+                    hotel['location']['latitude'], hotel['location']['longitude'],
+                    image_urls[hotel_id], get_review_score_word( float( hotel['review_score'] ) ), hotel['review_score'], hotel['review_nr'],
+                    get_view_word(view_r), view_r,
+                    hotel_color['main_color'], hotel_color['sub_color'], hotel_color['hex']
+                )
+            )
+            db.commit()
         except KeyError:
             next
-
-        db.cursor().execute(
-            "INSERT INTO \"Hotels\" " +
-            "(hotel_id, hotel_name, countrycode, city, district," +
-            "latitude, longitude," +
-            "img, review_score_word, review_score, review_nr," +
-            "view_word, view_nr," +
-            "main_color, sub_color, hex)" +
-            "VALUES (\'{}\', \"{}\", \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', {}, {}, \'{}\', {}, \'{}\', \'{}\', \'{}\');".format(
-                hotel['hotel_id'], hotel["name"].replace("\"", ""), hotel['countrycode'], hotel['city'], hotel['district'],
-                hotel['location']['latitude'], hotel['location']['longitude'],
-                image_urls[idx], get_review_score_word( float( hotel['review_score'] ) ), hotel['review_score'], hotel['review_nr'],
-                get_view_word(view_r), view_r,
-                hotel_color['main_color'], hotel_color['sub_color'], hotel_color['hex']
-            )
-        )
-        db.commit()
