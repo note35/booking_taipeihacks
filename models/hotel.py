@@ -131,7 +131,7 @@ class HotelModel(object):
             except ZeroDivisionError:
                 pass
 
-        return main_components
+        return sorted(main_components, key=lambda k: k["main_color_orig"], reverse=True)
 
 
     def get_evaluation_statistics(self, city):
