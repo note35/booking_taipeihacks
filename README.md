@@ -2,7 +2,7 @@
 
 ## Backend
 
-pip install -r requirements.txt
+pip install -r requirement.txt
 
 cd pre_processor
 
