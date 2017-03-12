@@ -12,8 +12,6 @@ api = Api(app)
 app.config["DATABASE"] = "./hotel.db"
 hotel_model = HotelModel()
 
-@app.route("/")
-
 @app.teardown_appcontext
 def close_connection(exception):
     hotel_model.close_connection(exception)
