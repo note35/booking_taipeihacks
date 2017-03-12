@@ -17,8 +17,6 @@ import css from './App.css';
 
 const { Content, Header, Row } = Layout;
 
-import LoadFB from '../../lib/FB';
-
 class App extends Component {
 
   state = {
