@@ -16,16 +16,19 @@ class ChartFilter extends Component {
   render() {
     console.log(this.props)
     const { ChartFilter, ChartData } = this.props; 
+    let source = [];
+    if(ChartData[ChartFilter.city])
+      source = ChartData[ChartFilter.city][ChartFilter.score]
 
-    const source = ChartData[ChartFilter.score]
+    console.log(source);
 
     return (
       <div className={css.container}>
       
         <h1 className={css.title}>Color Analytics</h1>
-        <MainColorPie source={source}/>
+        <MainColorPie source={source} />
         <h1 className={css.title}>SubColor Analytics</h1>
-        <SubColorBar />
+        <SubColorBar source={source} />
       </div>
     );
   }

@@ -4,9 +4,9 @@ import Dropdown from 'react-toolbox/lib/dropdown';
 
 // redux
 import { connect } from 'react-redux';
-import { setChartFilter } from 'actions';
+import { setPhotoFilter } from 'actions';
 
-import css from './ChartFilter.css'
+import css from './PhotoFilter.css'
 
 const scores = [
   { value: 'wonderful', label: 'Wonderful' },
@@ -21,7 +21,7 @@ const cities = [
   { value: 'Amsterdam', label: 'Amsterdam'}
 ];
 
-class ChartFilter extends Component {
+class PhotoFilter extends Component {
 
   state = {
     value: 'wonderful',
@@ -29,12 +29,12 @@ class ChartFilter extends Component {
   };
 
   handleDropDownChange = (value) => {
-    this.props.setChartFilter({ score: value, city: this.state.city });
+    this.props.setPhotoFilter({ score: value, city: this.state.city });
     this.setState({value: value});
   };
 
   handleCityChange = (city) => {
-    this.props.setChartFilter({ score: this.state.value, city: city });
+    this.props.setPhotoFilter({ score: this.state.value, city: city });
     this.setState({city: city});
   };
 
@@ -64,14 +64,14 @@ class ChartFilter extends Component {
   }
 }
 
-function mapStateToProps( {ChartFilter} ) {
+function mapStateToProps( {PhotoFilter} ) {
   return {
-    ChartFilter,
+    PhotoFilter,
   };
 }
 
 export default connect(
   mapStateToProps, {
-    setChartFilter,
+    setPhotoFilter,
   }
-)(ChartFilter)
+)(PhotoFilter)

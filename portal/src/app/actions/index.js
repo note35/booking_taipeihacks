@@ -9,6 +9,8 @@ export const UPDATE_TAGGED_PLACES = 'UPDATE_TAGGED_PLACES';
 export const SET_CHARTFILTER = 'SET_CHARTFILTER';
 export const FETCH_CHART_DATA = 'FETCH_CHART_DATA';
 export const UPDATE_CHART_DATA = 'UPDATE_CHART_DATA';
+export const SET_PHOTOFILTER = 'SET_PHOTOFILTER';
+export const UPDATE_PHOTO_DATA = 'UPDATE_PHOTO_DATA';
 
 export const fetchChartData = () => {
   return {
@@ -23,10 +25,24 @@ export const setChartFilter = (filter) => {
   }
 }
 
+export const setPhotoFilter = (filter) => {
+  return {
+    type: SET_PHOTOFILTER,
+    filter
+  }
+}
+
 export const updateChartData = (chartData) => {
   return {
     type: UPDATE_CHART_DATA,
     chartData,
+  }
+}
+
+export const updatePhotoData = (photoData) => {
+  return {
+    type: UPDATE_PHOTO_DATA,
+    photoData,
   }
 }
 

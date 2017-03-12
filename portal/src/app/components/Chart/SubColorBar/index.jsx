@@ -6,11 +6,12 @@ import React, { Component } from 'react';
 let config = {
 
     chart: {
-        type: 'column'
+        type: 'column',
+        backgroundColor: '#EEEEEE',
     },
 
     title: {
-        text: 'Total fruit consumtion, grouped by gender'
+        text: ''
     },
 
     xAxis: {
@@ -55,7 +56,9 @@ let config = {
         name: 'subred2',
         data: [3],
         stack: 'red'
-    }]
+    }],
+
+    credits: false,
 }
 
 let myChart;
@@ -63,19 +66,25 @@ let myChart;
 export default class SubColorBar extends Component {
    componentWillReceiveProps( nextProps ) {
     console.log('receive', nextProps.source)
-    // let chart = this.refs.chart.getChart();
-    // chart.series[0].addPoint({x: 10, y: 12});
-    // myChart.update({ colors: [
-    //         nextProps.source['main_color'][0], 
-    //         nextProps.source['main_color'][1], 
-    //         nextProps.source['main_color'][2], 
-    //         '#999999', '#808080', '#666666'
-    // ]}, true)
-    // config.colors[0] = nextProps.source['main_color'][0];
-    // config.colors[1] = nextProps.source['main_color'][1];
-    // config.colors[2] = nextProps.source['main_color'][2];
 
-    // myChart = Highcharts.chart('subcolorbar', config)
+    let series = [];
+
+    for( var i = 0 ; i < nextProps.source['main_color'].length ; i++ ){
+      const maincolor = nextProps.source['main_color'][i]['sub_color'].map((subColor) => {
+        return {
+              name: subColor.name,
+              color: subColor.hex,
+              stack: i + 1,
+              data: [subColor['sub_color_orig']],
+        }
+      })
+
+      series = [ ...series, ...maincolor ];
+    }
+
+    config.series = series;
+
+    myChart = Highcharts.chart('subcolorbar', config)
   }
 
   componentDidMount() {

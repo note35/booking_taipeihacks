@@ -5,6 +5,7 @@ import {
   UPDATE_TAGGED_PLACES,
   SET_CHARTFILTER,
   UPDATE_CHART_DATA,
+  SET_PHOTOFILTER,
 } from '../actions'
 
 const initState = {
@@ -35,6 +36,7 @@ const FB = ( state = {}, action) => {
 
 const intitChartFilter = {
   score: 'wonderful',
+  city: 'Taipei',
 }
 
 const ChartFilter = ( state = intitChartFilter, action ) => {
@@ -46,8 +48,65 @@ const ChartFilter = ( state = intitChartFilter, action ) => {
   }
 }
 
-const initChartData = {
+const intitPhotoFilter = {
+  score: 'wonderful',
+  city: 'Taipei',
+}
 
+const PhotoFilter = ( state = intitPhotoFilter, action ) => {
+  switch (action.type) {
+    case SET_PHOTOFILTER:
+      return action.filter;
+    default:
+      return state;
+  }
+}
+
+const initChartData = {
+  Taipei: {
+    wonderful: {
+      img_urls: [],
+      main_color: [],
+    },
+    very_good: {
+      img_urls: [],
+      main_color: [],
+    },
+    good: {
+      img_urls: [],
+      main_color: [],
+    }, 
+    pleasant: {
+      img_urls: [],
+      main_color: [],
+    },
+    no_rating: {
+      img_urls: [],
+      main_color: [],
+    },
+  },
+  Amsterdam: {
+    wonderful: {
+      img_urls: [],
+      main_color: [],
+    },
+    very_good: {
+      img_urls: [],
+      main_color: [],
+    },
+    good: {
+      img_urls: [],
+      main_color: [],
+    }, 
+    pleasant: {
+      img_urls: [],
+      main_color: [],
+    },
+    no_rating: {
+      img_urls: [],
+      main_color: [],
+    },
+  },
 }
 
 const ChartData = ( state = initChartData, action ) => {
@@ -62,6 +121,7 @@ const ChartData = ( state = initChartData, action ) => {
 const rootReducer = combineReducers({
   ChartFilter,
   ChartData,
+  PhotoFilter,
 })
 
 export default rootReducer

@@ -21,8 +21,8 @@ body {
 }
 
 .Content {
-  margin: 5px;
-  flex: 1 100%;
+  // margin: 5px;
+  flex: 1 90%;
 }
 
 .Row {

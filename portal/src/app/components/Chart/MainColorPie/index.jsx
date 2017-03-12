@@ -8,17 +8,18 @@ let config = {
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false,
-        type: 'pie'
+        type: 'pie',
+        backgroundColor: '#EEEEEE',
     },
 
     colors: [
-            'yellow', '#e6e6e6', '#b3b3b3', '#999999', '#808080', '#666666'
+            'blue', '#e6e6e6', '#b3b3b3', '#999999', '#808080', '#666666'
     ],
     title: {
         text: ''
     },
     tooltip: {
-        pointFormat: 'Rate: <b>{point.percentage:.1f}%</b>'
+        pointFormat: 'Rate: <b>{point.percentage:.1f}%</b><br>Number: <b>{point.y}</b>'
     },
     plotOptions: {
         pie: {
@@ -64,27 +65,13 @@ let myChart;
 
 export default class MainColorPie extends Component {
   componentWillReceiveProps( nextProps ) {
-    console.log('receive', nextProps.source)
-    // let chart = this.refs.chart.getChart();
-    // chart.series[0].addPoint({x: 10, y: 12});
-    // myChart.update({ colors: [
-    //         nextProps.source['main_color'][0], 
-    //         nextProps.source['main_color'][1], 
-    //         nextProps.source['main_color'][2], 
-    //         '#999999', '#808080', '#666666'
-    // ]}, true)
 
     const colors = nextProps.source['main_color'].map((color) => {
-        return color.name;
+        return color.hex;
     })
 
     const data = nextProps.source['main_color'].map((color) => {
         let name = color.name;
-
-        if( name.slice(-1) === 's')
-            name = name.slice(0, -1);
-
-        name = 'orange';
 
         return { name: name, y: color.main_color_orig };
     })
