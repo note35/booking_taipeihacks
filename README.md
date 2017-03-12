@@ -23,17 +23,25 @@ This project contains two part
 
     pip install -r requirement.txt
 
+2.And create the folder for saving the images.
+
+    mkdir pre_processor/hotel_images
+
 2.After you installed those requirement, you can run the program by command below.
 
     python flaskr.py
 
 3.Then, you can access the restful API.
 
-    - Get evaluation statistics of given city: 
+    - Crawl the given city in order to analyze:
+
+        http://127.0.0.1:5000/crawl_city/<city>
+
+    - Get evaluation statistics of given city:
 
         http://127.0.0.1:5000/evaluation_statistics/<city>
 
-    - Get views statistics of given city: 
+    - Get views statistics of given city:
 
         http://127.0.0.1:5000/views_statistics/<city>
 
